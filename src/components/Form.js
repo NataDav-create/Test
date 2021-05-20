@@ -8,6 +8,16 @@ const FormEl = styled.form`
   margin: 0 auto 5rem;
   padding: 1rem 2rem;
   border-radius: 0.25rem;
+  @media (max-width: 500px) {
+    max-width: 350px;
+    font-size: 15px;
+  }
+  @media (max-width: 370px) {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const Input = styled.input`
@@ -22,6 +32,12 @@ const FormWrapper = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr;
   align-items: center;
+  @media (max-width: 370px) {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const Button = styled.button`
@@ -68,7 +84,6 @@ const Form = (props) => {
 
   function getRandomColor() {
     let color = colorArr[Math.floor(Math.random() * colorArr.length)];
-    console.log(color);
     return color;
   }
 
@@ -76,7 +91,6 @@ const Form = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(getRandomColor());
     if (todoItem) {
       const newTodo = {
         text: todoItem,

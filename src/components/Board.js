@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const BoardContainer = styled.div`
-  width: 1200px;
+  max-width: 1200px;
   padding: 0 15px 50px;
   margin: 0 auto;
   display: flex;
@@ -11,6 +11,9 @@ const BoardContainer = styled.div`
   align-items: stretch;
   flex-wrap: wrap;
   height: 100%;
+  @media (max-width: 1100px) {
+    justify-content: space-around;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -22,6 +25,21 @@ const CardWrapper = styled.div`
   padding-bottom: 100px;
   padding-right: 50px;
   margin-bottom: 50px;
+  @media (max-width: 960px) {
+    width: 50%;
+    padding-right: 0px;
+  }
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+  &:last-child {
+    @media (max-width: 960px) {
+      padding-right: 50px;
+    }
+    @media (max-width: 740px) {
+      width: 100%;
+    }
+  }
 `;
 
 const CardHeader = styled.div`
@@ -41,6 +59,9 @@ const CardHeader = styled.div`
 const CardText = styled.h4`
   color: #333;
   font-size: 20px;
+  @media (max-width: 500px) {
+    font-size: 17px;
+  }
 `;
 
 const ItemWrapper = styled.div`
@@ -61,6 +82,15 @@ const ItemWrapper = styled.div`
   }
   &::last-child {
     margin-bottom: -20px;
+    @media (max-width: 370px) {
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
+  }
+  @media (max-width: 500px) {
+    width: 150px;
+    height: 150px;
+    font-size: 15px;
   }
 `;
 

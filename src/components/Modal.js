@@ -6,7 +6,11 @@ const Modal = ({ closeModal }) => {
       closeModal();
     }, 3000);
   });
-  return <p style={{ fontSize: "13px", color: "pink" }}>Please Enter Value</p>;
+  return (
+    <p style={{ fontSize: "13px", color: "pink", textAlign: "center" }}>
+      Please Enter Value
+    </p>
+  );
 };
 
 export default Modal;
