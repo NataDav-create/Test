@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { GlobalStyle } from "./components/Style/GlobalStyle";
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
+import Board from "./components/Board";
+import { Context } from "./components/functions/context";
+import { boardData } from "./data";
+const url = "./data.js";
 
 function App() {
+  const [todoList, setTodoList] = useState([]);
+
+  const getBoards = async () => {
+    const response = await fetch(url);
+    const todoList = await response.json();
+    setTodoList(todoList[0].todos);
+  };
+  useEffect(() => {
+    getBoards();
+  }, []);
+
+  const addTodoItem = (todo) => {
+    console.log(todo);
+    setTodoList((prevTodos) => {
+      return [todo, ...prevTodos];
+    });
+    boardData[0].todos.push(todo);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{ todoList }}>
+      <GlobalStyle />
+      <Navbar />
+      <Form addTodoItem={addTodoItem} />
+      <Board boardData={boardData} />
+    </Context.Provider>
   );
 }
 
